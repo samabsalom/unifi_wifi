@@ -48,17 +48,31 @@ check_status() {
  fi
 }
 
+check() {
+ # checks wifi network status
+ # Mute response by adding > /dev/null
+ response=$(${curl_cmd} "$unifi_controller"'/api/s/'$site'/rest/wlanconf/'"$wifi_id" --compressed)
+ status=$(echo $response | jq ".data[0].enabled")
+ if [ "$status" == "true" ]; then
+ echo "Wifi up"
+ elif [ "$status" == "false" ]; then
+ echo "Wifi down"
+ else
+ echo exit -1
+ fi
+}
+
 unifi_login
 if [ "$1" == "enable" ]; then
- check_status
+ check
  echo "Enabling WiFi."
  enable_wifi
- check_status
+ check
 elif [ "$1" == "disable" ]; then
- check_status
+ check
  echo "Disabling WiFi."
  disable_wifi
- check_status
+ check
 elif [ "$1" == "status" ]; then
  check_status
 else
