@@ -46,8 +46,9 @@
 
 
 
+## Scope
 
-99% of this is collated from elsewhere
-thanks to https://github.com/jcconnell https://github.com/ioull
-I made this purely to add in site_id to aid my needs
+* 99% of this is collated from elsewhere
+* thanks to https://github.com/jcconnell https://github.com/ioull
+* I made this purely to add in site_id to aid my needs
 
